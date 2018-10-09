@@ -18,6 +18,7 @@ exports.getSettingsFile = function () {
 var Settings = {
     username : "ilia",
     password : "ilia1234",
-    endpoint : "@ds125273.mlab.com:25273/nodejs-course"
+    endpoint : "@ds125273.mlab.com:25273/nodejs-course",
+    port : 3000
 
 }
