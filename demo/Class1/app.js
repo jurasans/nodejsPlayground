@@ -31,12 +31,25 @@ function SetupAPI() {
 }
 function GetUsers() {
     app.get('/', function (res, req) {
-        console.log('got \'im! HA!');
+        
     });
 }
 function CreateUser() {
-   
+   app.post('/create', (req, res) => {
+    let requestJson = req.body;
+    console.log(requestJson);
+    let newItem = new userModel(requestJson);
+    newItem.save(function (err, item) {
+    if (err) {
+    console.log(err);
+
+    return next(err);
+    }
+    res.json({item});
+    });
+   });
 }
+
 function ChangeUser() {
    
 }
@@ -44,9 +57,15 @@ function DeleteUser() {
    
 }
 function GetUsers() {
-    app.get('/', function (res, req) {
-        console.log('got \'im! HA!');
-    });
+    app.get('/getUsers',function (req, res, next) {
+        userModel.find({})
+        .then(function (data)
+        {
+        res.json(data);
+        }, function (err) {
+        next(err)
+        });
+       });
 }
 
 function StartServicesAndConnect() {
